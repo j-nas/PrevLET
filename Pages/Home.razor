@@ -1,0 +1,47 @@
+﻿@page "/"
+@inject FontService FontService
+<PageTitle>PrevLIT</PageTitle>
+
+
+
+<MudPaper Class="mt-12 pa-6">
+    <MudText Typo="Typo.h6" Align="Align.Center">
+        <pre>
+
+            @FontService.Render("PrevLIT", "Graffiti.flf")
+    </pre>
+    </MudText>
+
+    <MudTextField Class="py-2" @bind-Value="_inputValue" DebounceInterval="500" Variant="Variant.Outlined"
+        Label="Preview" />
+
+
+
+    <MudPaper Elevation="0" Outlined="true" Class="relative mud-dark pa-2 pb-4" MinHeight="100px">
+
+        <pre class="overflow-auto object-cover relative pb-2" style="white-space: pre; ">
+            @FontService.Render(_inputValue, "Graffiti.flf")
+
+        </pre>
+        <MudText Class="absolute pointer-events-none " Style="left: 12px; bottom: 0px;" Typo="Typo.caption">Preview
+        </MudText>
+        <MudFab Size="Size.Small" Class="absolute" Style="right: 12px; bottom: 12px;"
+            StartIcon="@Icons.Material.Filled.ContentCopy" />
+
+    </MudPaper>
+</MudPaper>
+
+<div>
+    @foreach (var font in FontService.FontList)
+    {
+        <MudText Typo="Typo.h6">@font</MudText>
+    }
+</div>
+
+@code {
+    string _inputValue { get; set; } = "Hello World!";
+
+
+
+
+}

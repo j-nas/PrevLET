@@ -1,0 +1,26 @@
+﻿@inherits LayoutComponentBase
+<MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="_theme" />
+
+
+
+<MudLayout>
+    <MudContainer MaxWidth="MaxWidth.Medium">
+        <MudAppBar Elevation="1">
+
+            <MudText Typo="Typo.h5" Class="ml-3">PrevLIT</MudText>
+            <MudSpacer />
+            <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Edge="Edge.End" />
+        </MudAppBar>
+        <MudMainContent>
+            @Body
+
+        </MudMainContent>
+    </MudContainer>
+</MudLayout>
+
+
+
+@code {
+    private MudTheme _theme = new();
+    private bool _isDarkMode = true;
+}
