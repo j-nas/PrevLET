@@ -20,8 +20,6 @@ jobs:
       # publishes Blazor project to the release-folder
       - name: Publish .NET Core Project
         run: dotnet publish PrevLET.csproj -c Release -o release --nologo
-      - name: Deploy GitHub Pages site
-        uses: actions/deploy-pages@v4.0.5
       # changes the base-tag in index.html from '/' to 'PrevLET' to match GitHub Pages repository subdirectory
       - name: Change base-tag in index.html from / to PrevLET
         run: sed -i 's/<base href="\/" \/>/<base href="\/PrevLET\/" \/>/g' release/wwwroot/index.html
@@ -30,4 +28,11 @@ jobs:
         run: cp release/wwwroot/index.html release/wwwroot/404.html
       # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
       - name: Add .nojekyll file
-        run: touch release/wwwroot/.nojekyl
+        run: touch release/wwwroot/.nojekyll
+
+      - name: Commit wwwroot to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: release/wwwroot
