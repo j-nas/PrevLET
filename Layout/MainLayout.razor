@@ -1,5 +1,6 @@
 ﻿@inherits LayoutComponentBase
 <MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="_theme" />
+<MudSnackbarProvider />
 
 
 
@@ -7,7 +8,8 @@
     <MudContainer MaxWidth="MaxWidth.Medium">
         <MudAppBar Elevation="1">
 
-            <MudText Typo="Typo.h5" Class="ml-3">PrevLIT</MudText>
+            <MudText Typo="Typo.h5" Class="ml-3">PrevLET
+            </MudText>
             <MudSpacer />
             <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Edge="Edge.End" />
         </MudAppBar>

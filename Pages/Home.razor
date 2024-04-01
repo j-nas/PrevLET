@@ -1,16 +1,26 @@
 ﻿@page "/"
+@inject IJSRuntime JS
 @inject FontService FontService
-<PageTitle>PrevLIT</PageTitle>
+@inject ISnackbar Snackbar
+
+<PageTitle>PrevLET</PageTitle>
 
 
 
-<MudPaper Class="mt-12 pa-6">
-    <MudText Typo="Typo.h6" Align="Align.Center">
-        <pre>
+<MudPaper Class="my-12 pa-6">
 
-            @FontService.Render("PrevLIT", "Graffiti.flf")
-    </pre>
+
+    <MudText Typo="Typo.body2" Align="Align.Left" Style="">
+        <pre class=" ">
+
+            @FontService.Render("PrevLET", "Graffiti.flf")
+
+        </pre>
     </MudText>
+
+    <MudAutocomplete T="string" Label="Select Font" @bind-Value="_selectedFont" Items="_fontList"
+        Variant="Variant.Outlined" Class="py-2" SearchFunc="@Search" MaxItems="null" Adornment="Adornment.End"
+        AdornmentIcon="@Icons.Material.Filled.ShuffleOn" OnAdornmentClick="() => SelectRandomFont()" />
 
     <MudTextField Class="py-2" @bind-Value="_inputValue" DebounceInterval="500" Variant="Variant.Outlined"
         Label="Preview" />
@@ -20,27 +30,56 @@
     <MudPaper Elevation="0" Outlined="true" Class="relative mud-dark pa-2 pb-4" MinHeight="100px">
 
         <pre class="overflow-auto object-cover relative pb-2" style="white-space: pre; ">
-            @FontService.Render(_inputValue, "Graffiti.flf")
+            @FontService.Render(_inputValue, _selectedFont)
 
         </pre>
         <MudText Class="absolute pointer-events-none " Style="left: 12px; bottom: 0px;" Typo="Typo.caption">Preview
         </MudText>
-        <MudFab Size="Size.Small" Class="absolute" Style="right: 12px; bottom: 12px;"
-            StartIcon="@Icons.Material.Filled.ContentCopy" />
+        <MudFab Size="Size.Small" Color="Color.Info" Class="absolute" Style="right: 12px; bottom: 12px;"
+            StartIcon="@Icons.Material.Filled.ContentCopy" @onclick="CopyPreviewToClipboard" />
+
+
+        <MudFab Size="Size.Small" @onclick="() => FontService.DownloadFontFile(_selectedFont)" Class="absolute"
+            Color="Color.Primary" Style="right: 64px; bottom: 12px;" StartIcon="@Icons.Material.Filled.Download" />
 
     </MudPaper>
 </MudPaper>
 
-<div>
-    @foreach (var font in FontService.FontList)
-    {
-        <MudText Typo="Typo.h6">@font</MudText>
-    }
-</div>
+
 
 @code {
     string _inputValue { get; set; } = "Hello World!";
-
+    string _selectedFont { get; set; } = "Graffiti.flf";
+    List<string> _fontList = new List<string>();
+    protected override void OnInitialized()
+    {
+        _fontList = FontService.FontList;
+    }
+    private async Task<IEnumerable<string>> Search(string value)
+    {
+        if (string.IsNullOrEmpty(value))
+            return _fontList;
+        // async is required by MudAutocomplete
+        var result = await Task.Run(() => _fontList.Where(x => x.Contains(value, StringComparison.OrdinalIgnoreCase)));
+        return result;
+    }
+    private void CopyPreviewToClipboard()
+    {
+        try
+        {
+            JS.InvokeVoidAsync("navigator.clipboard.writeText", FontService.Render(_inputValue, _selectedFont));
+            Snackbar.Add("Copied to clipboard", Severity.Success);
+        }
+        catch
+        {
+            Snackbar.Add("Failed to copy to clipboard", Severity.Error);
+        }
+    }
+    private void SelectRandomFont()
+    {
+        var random = new Random();
+        _selectedFont = _fontList[random.Next(0, _fontList.Count)];
+    }
 
 
 
