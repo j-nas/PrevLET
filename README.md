@@ -1,8 +1,8 @@
-# PrevLIT
+# PrevLET
 
 ## Description
 
-PrevLIT is a web application to for previewing Figlet fonts. It is built with Blazor WebAssembly, and uses the [figgle](https://www.nuget.org/packages/Figgle) library to render the fonts.
+PrevLET is a web application to for previewing Figlet fonts. It is built with Blazor WebAssembly, and uses the [figgle](https://www.nuget.org/packages/Figgle) library to render the fonts.
 
 ## Deployment
 
