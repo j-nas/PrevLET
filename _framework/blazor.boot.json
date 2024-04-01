@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "PrevLET",
   "resources": {
-    "hash": "sha256-3aD1ZSG7qGigiJiGHA3zQWGm9CJX2SeaQeBzGPP74h4=",
+    "hash": "sha256-taNwo8riDwFnQyDDgy8UwXorXbfvL6MekEEUveybGK4=",
     "jsModuleNative": {
       "dotnet.native.8.0.3.wzxwl5s97r.js": "sha256-D4sYBYmDfH/YekgYRgX959/2RG6k28sJSHmcsn+iikk="
     },
@@ -37,7 +37,7 @@
       "Microsoft.JSInterop.WebAssembly.wasm": "sha256-Kr13V+6zGL8rPvFmuBAsaEJfoMlR4Q8keJHKaVGVbGA=",
       "MudBlazor.wasm": "sha256-/XLryfML70oJIxGgVrEd3VCZyjIPagvPwNN/OnEDcNY=",
       "netstandard.wasm": "sha256-a7U7kDLXom/ZmIM5ZPQmYb/GafNmcd2pfZyWSstSZTM=",
-      "PrevLET.wasm": "sha256-vNfGBEejs4Hdg/KnuWfJOsAyqdNXGYxZ6zHjSM0Fkm0=",
+      "PrevLET.wasm": "sha256-UEdXC4Eu5V0Q3MFKphAP9V+rNHTvc4N16gzDDR1V58g=",
       "System.Collections.Concurrent.wasm": "sha256-PmsXHTCzNuAe1v2t3Wc9arx0K7Ly9BlqP89+gLik4g8=",
       "System.Collections.Immutable.wasm": "sha256-KUgs8IxoPXlmxGtRsX2LlGxvIkngxBFzPEdF0nWvjNA=",
       "System.Collections.wasm": "sha256-B6A+as9P1komX+PhJUxRtXDAkR6QT9qw/GhcHDE1yBg=",
