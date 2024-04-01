@@ -21,7 +21,7 @@ public class FontService
         {
             if (resource.EndsWith(".flf"))
             {
-                var fontName = resource.Replace("PrevLIT.Assets.Fonts.", "");
+                var fontName = resource.Replace("PrevLET.Assets.Fonts.", "");
                 FontList.Add(fontName);
             }
         }
