@@ -16,19 +16,29 @@
 
   <body>
     <div id="app">
-      <svg class="loading-progress">
-        <circle r="40%" cx="50%" cy="50%" />
-        <circle r="40%" cx="50%" cy="50%" />
-      </svg>
-      <div class="loading-progress-text"></div>
+      <div
+        class="loading-progress-text"
+        style="background-color: rgba(39, 39, 47, 1); height: 100vh"
+      >
+        <pre>
+__________                     .____    .______________
+\______   \_______   _______  _|    |   |   \__    ___/
+ |     ___/\_  __ \_/ __ \  \/ /    |   |   | |    |   
+ |    |     |  | \/\  ___/\   /|    |___|   | |    |   
+ |____|     |__|    \___  >\_/ |_______ \___| |____|   
+                        \/             \/             
+        </pre>
+        <p>Loading...</p>
+      </div>
     </div>
 
     <div id="blazor-error-ui">
       An unhandled error has occurred.
       <a href="" class="reload">Reload</a>
-      <a class="dismiss">🗙</a>
+      <a class="dismiss">X</a>
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
     <script src="_content/MudBlazor/MudBlazor.min.js"></script>
+    <script src="download.js"></script>
   </body>
 </html>
