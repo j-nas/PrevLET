@@ -38,15 +38,9 @@ public class FontService
         {
             return null;
         }
-        Console.WriteLine($"Loading font: {resourceName}");
-
         using var stream = assembly.GetManifestResourceStream(resourceName);
         using var reader = stream == null ? null : new StreamReader(stream);
-        if (reader == null)
-        {
-            return null;
-        }
-        return reader.ReadToEnd();
+        return reader?.ReadToEnd();
     }
 
     public async Task DownloadFontFile(string fontName)
